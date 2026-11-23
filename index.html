@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launching an ERC-20 on Elysium and Robinhood Chain: Settings and Real Costs</title>
+<meta name="description" content="Network settings, how to fund your wallet, and measured deploy costs for a standard ERC-20 on Elysium (Hyperliquid L2) and Robinhood Chain, compared with Ethereum. By Graham McCann.">
+<meta name="author" content="Graham McCann">
+<link rel="canonical" href="https://grahammccann2009.github.io/elysium-robinhood-token-guide/">
+<meta property="og:title" content="Launching an ERC-20 on Elysium and Robinhood Chain">
+<meta property="og:description" content="Chain IDs, gas tokens, bridges and what a token deploy really costs on each network, measured on 23 November 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://grahammccann2009.github.io/elysium-robinhood-token-guide/">
+<meta property="og:image" content="https://www.ethtokenlaunch.com/images/guides/elysium-robinhood-guide-cover.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Launching an ERC-20 on Elysium and Robinhood Chain: Settings and Real Costs","author":{"@type":"Person","name":"Graham McCann"},"datePublished":"2026-11-23","dateModified":"2026-11-23","image":"https://www.ethtokenlaunch.com/images/guides/elysium-robinhood-guide-cover.png","mainEntityOfPage":"https://grahammccann2009.github.io/elysium-robinhood-token-guide/"}
+</script>
+<style>
+:root{--bg:#ffffff;--ink:#0f172a;--muted:#475569;--line:#e2e8f0;--accent:#0f766e;--soft:#ecfdf5;--warn:#b45309}
+@media (prefers-color-scheme:dark){:root{--bg:#0b1020;--ink:#e5e7eb;--muted:#9ca3af;--line:#1f2937;--accent:#5fd4b6;--soft:#0f2a26;--warn:#fbbf24}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:2.1rem;line-height:1.2;margin:0 0 8px}
+h2{font-size:1.35rem;margin:40px 0 10px}
+.by{color:var(--muted);margin:0 0 24px;font-size:.95rem}
+.answer{background:var(--soft);border-left:4px solid var(--accent);padding:14px 18px;border-radius:6px}
+img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.95rem}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-weight:600}
+.warn{color:var(--warn);font-weight:600}
+a{color:var(--accent)}
+footer{margin-top:48px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<main>
+<h1>Launching an ERC-20 on Elysium and Robinhood Chain</h1>
+<p class="by">By Graham McCann · 23 November 2026</p>
+
+<p class="answer">Both networks run normal ERC-20 contracts, so the token itself is the same as on Ethereum. What changes is the gas coin and how you fund your wallet. Elysium uses HYPE bridged from HyperEVM. Robinhood Chain uses ETH bridged from Ethereum. Deploying a standard token cost about 3 US cents on either network when I measured it, against about $8 on Ethereum mainnet.</p>
+
+<p><img src="https://www.ethtokenlaunch.com/images/guides/elysium-robinhood-guide-cover.png" width="1600" height="900" alt="Launching an ERC-20 on Elysium and Robinhood Chain: network settings, funding and deploy costs"></p>
+
+<h2>Network settings side by side</h2>
+<div class="tbl">
+<table>
+<thead><tr><th></th><th>Elysium</th><th>Robinhood Chain</th></tr></thead>
+<tbody>
+<tr><td>What it is</td><td>Layer 2 for Hyperliquid, built by Kinetiq on the Arbitrum Orbit stack</td><td>Ethereum Layer 2 on the Arbitrum Orbit stack</td></tr>
+<tr><td>Chain ID</td><td>99901</td><td>4663</td></tr>
+<tr><td>Gas coin</td><td>HYPE</td><td>ETH</td></tr>
+<tr><td>Settles to</td><td>HyperEVM (chain 999)</td><td>Ethereum</td></tr>
+<tr><td>Public RPC</td><td>https://rpc.elysium.kinetiq.xyz</td><td>https://rpc.mainnet.chain.robinhood.com</td></tr>
+<tr><td>Explorer</td><td>elysium.kinetiq.xyz</td><td>robinhoodchain.blockscout.com</td></tr>
+<tr><td>Mainnet since</td><td>9 November 2026</td><td>1 July 2026</td></tr>
+<tr><td>Funding route</td><td>Bridge HYPE 1 to 1 from HyperEVM with Kinetiq's bridge</td><td>Bridge ETH from Ethereum through the Arbitrum route</td></tr>
+<tr><td>Coming back out</td><td>About 5.5 days on the standard route</td><td>About 7 days on the canonical route</td></tr>
+</tbody>
+</table>
+</div>
+<p>Check the chain ID before adding either network to a wallet. An older, unrelated network also calls itself "Elysium" and uses chain IDs 1338 and 1339.</p>
+
+<h2>What a token deploy really costs</h2>
+<p>I asked each network's public RPC to estimate the gas for deploying the same fixed-supply ERC-20 contract (name, symbol, decimals, supply, owner), then priced it at that moment's gas price and coin price. The contract needs 763,583 gas on every network. The price per unit of gas is what differs.</p>
+<p><img src="https://www.ethtokenlaunch.com/images/guides/token-deploy-cost-2026-11.png" width="1600" height="900" alt="Bar chart of the gas cost to deploy a standard ERC-20 on 23 November 2026: Ethereum about $8.15, Base about 4 cents, Robinhood Chain about 3 cents, Elysium about 3 cents, BNB Chain about 2 cents"></p>
+<div class="tbl">
+<table>
+<thead><tr><th>Network</th><th>Gas price</th><th>Deploy gas cost</th><th>In US dollars</th></tr></thead>
+<tbody>
+<tr><td>Ethereum</td><td>5.93 gwei</td><td>0.00453 ETH</td><td>$8.15</td></tr>
+<tr><td>Base</td><td>0.029 gwei</td><td>0.0000225 ETH</td><td>$0.04</td></tr>
+<tr><td>Robinhood Chain</td><td>0.022 gwei</td><td>0.0000167 ETH</td><td>$0.03</td></tr>
+<tr><td>Elysium</td><td>0.5 gwei</td><td>0.00038 HYPE</td><td>$0.03</td></tr>
+<tr><td>BNB Chain</td><td>0.05 gwei</td><td>0.0000382 BNB</td><td>$0.02</td></tr>
+</tbody>
+</table>
+</div>
+<p>Measured on 23 November 2026 at 14:06 UTC with ETH at $1,799.54, BNB at $574.75 and HYPE at $67.02. Gas prices move, so treat these as a snapshot. On both Layer 2s, network gas is no longer the cost worth worrying about. A token creator's service fee and the liquidity you add later are.</p>
+
+<h2>Funding your wallet without getting stuck</h2>
+<p>Most failed launches on new networks fail before the token exists, because the wallet holds the right coin on the wrong network.</p>
+<ul>
+<li><strong>Elysium:</strong> you need HYPE on Elysium itself. HYPE on Hyperliquid or HyperEVM is a separate balance. Get HYPE onto HyperEVM first (an exchange withdrawal to the HyperEVM network, or a cross-chain swap), then bridge it at elysium.kinetiq.xyz/bridge. Use the official bridge only.</li>
+<li><strong>Robinhood Chain:</strong> you need ETH on Robinhood Chain. ETH on Ethereum or Base does not count. Bridge a small amount across before you start.</li>
+<li><strong>Both:</strong> leave a little headroom. The deploy itself is cheap, but the first liquidity pool and a few test transfers all need gas.</li>
+<li class="warn">Only bridge what you plan to use. Withdrawals back out take days on both networks.</li>
+</ul>
+
+<h2>Settings to decide before you deploy</h2>
+<div class="tbl">
+<table>
+<thead><tr><th>Setting</th><th>Can it change later?</th><th>Common choice</th></tr></thead>
+<tbody>
+<tr><td>Name and symbol</td><td>No, they are written into the contract</td><td>Short symbol, 3 to 5 letters</td></tr>
+<tr><td>Decimals</td><td>No</td><td>18, the ERC-20 default</td></tr>
+<tr><td>Total supply</td><td>No, on a fixed-supply contract</td><td>1 billion or 1 million</td></tr>
+<tr><td>Owner</td><td>Yes, until it is renounced</td><td>Renounce once the launch is settled</td></tr>
+<tr><td>Liquidity</td><td>Added separately on an exchange</td><td>Pair with the network's gas coin</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Doing it without code</h2>
+<p>If you would rather not compile and deploy a contract yourself, a no-code creator does the same job from your browser wallet. ETHTokenLaunch has a <a href="https://www.ethtokenlaunch.com/elysium-token-creator/">token creator for Elysium</a> and a <a href="https://www.ethtokenlaunch.com/robinhood-chain-token-creator/">token creator for Robinhood Chain</a>. Both deploy the fixed-supply contract measured above, send the whole supply to your wallet and can renounce ownership for you. Either way, check the finished contract on the network's explorer before you share the address.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="https://elysium.kinetiq.xyz/docs/connecting-to-elysium">Kinetiq: connecting to Elysium</a> and <a href="https://elysium.kinetiq.xyz/docs/token-bridging-on-elysium">token bridging on Elysium</a></li>
+<li><a href="https://docs.robinhood.com/chain/connecting/">Robinhood Chain: network configuration</a></li>
+<li>Gas estimates: eth_estimateGas and eth_gasPrice on each network's public RPC, 23 November 2026. Coin prices from CoinGecko at the same time.</li>
+</ul>
+
+<footer>Written by Graham McCann, who builds token creation tools. Figures are a dated snapshot, not financial advice.</footer>
+</main>
+</body>
+</html>
